@@ -1,28 +1,26 @@
-# Application MDDAPI
-## Installation des outils (Linux) : 
+# INSTALLATION GUIDE
 
-### Java & Maven : 
+## SETUP ENVIRONNEMENT IN LINUX
 
-* Installation de java : `sudo apt install openjdk-21-jdk`
+### Java installation :
 
-* Télécharger la version de maven 3.9.9 sur le site https://maven.apache.org/download.cgi
+You need to run in a terminal the command : ` sudo apt install openjdk-21-jdk -y `
 
-* installer maven dans le répertoire /opt : 
+### Maven installation : 
 
-`cd ~/Téléchargements`
+First, download maven 3.9.9 or superior at https://maven.apache.org/download.cgi
 
-`unzip apache-maven-3.9.9-bin.zip`
+Now unzip the downloaded archive manually or by this commands :  
+` cd ~/Téléchargements `  
+` unzip apache-maven-3.9.9-bin.zip `
 
-`cd apache-maven-3.9.9-bin/`    
+Move the folder in /opt :  
+` sudo mv apache-maven-3.9.9 /opt `
 
-`sudo mv apache-maven-3.9.9 /opt`
-
-* ajouter java & maven au path : 
-
-`gedit ~/.profile`
-
-Ajouter les lignes suivantes en fin de fichier : 
-
+### Paths Settings for Java & Maven :
+You need to add to path theses folders by editing the .profile file :  
+` gedit ~/.profile `  
+Add the following lines at the end of this file :  
 `#java path`
 
 `export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/"`
@@ -35,48 +33,59 @@ Ajouter les lignes suivantes en fin de fichier :
 
 `export PATH=${M2_HOME}/bin:${PATH}`
 
-### Mysql : 
+### Mysql installation & configuration : 
+
+Do the following command to install mysql : 
 
 `sudo apt install mysql-server`
 
+To configure a user account do the following : 
+
 `sudo mysql -u root -p`
 
-`CREATE DATABASE yoga;`
+`CREATE DATABASE mddapi;`
 
 `CREATE USER 'user'@'localhost' IDENTIFIED BY 'user';`
 
 `GRANT ALL ON *.* to 'user'@'localhost';`
 
-Réaliser la combinaison CTRL + D, puis : 
+Hit combinaison `CTRL + D` to leave mysql server.
 
-`mysql -u root -p yoga < script.sql`
+run : `mysql -u user -p mddapi < schema.sql` to store variables in database.
 
-## Installer API back-end : 
+## INSTALL PROJECT FILES : 
 
-Depuis un terminal ou depuis vscode cloner le dossier distant https://github.com/ZaeRon007/Projet6.git
+### Install Back-end API :
 
-Monter dans le répertoire : `cd Projet6/back`
+You need to download archive at https://github.com/ZaeRon007/Mdd_Newspaper.git or clone this repository. 
 
-Enfin, compilez l'application : `mvn compile`
+Edit a file in back repository as `.env`. Inside it, write 2 variables named : 
+- `security.jwt.secret-key` and set it to a complex string
+- `security.jwt.expiration-time` and set it to the amount of time required (ex:1).
 
-## Installer API Front-end : 
+Next, open a terminal and go to the project directory. 
 
-Monter dans le répertoire : `cd Projet6/front`
+Run : `mvn compile`
 
-Enfin, installez les dépendances de l'application : `npm install`
+### Install Front-end API : 
 
-# Lancer l'application : 
+You need to download archive at https://github.com/ZaeRon007/Mdd_Newspaper.git or clone this repository. 
 
-Pour lancer l'application il est nécessaire de démarrer l'API front-end ainsi que le back-end.
+Next, we need to install node : 
 
-## Lancer API back-end : 
+- Download and install nvm:
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash`.
+- close and reopen a terminal.
+- Download and install Node.js : `nvm install 24`.
+- Verify the Node.js version : `node -v # Should print "v24.11.1"`.
+- Verify npm version : `npm -v # Should print "11.6.2"`.
 
-`cd Projet6/back`
+Then we need to install Angular Client and configure it as global with : `npm install -g @angular/cli`.
 
-`mvn spring-boot:run` ou `./launch.sh`
+Finally, go to project directory and run `npm install`.
 
-## Lancer API front-end : 
+# HOW TO LAUNCH PROJECT : 
 
-`cd Projet6/front`
-
-`ng serve` ou `./launch.sh`
+You should now be abble to run :
+- `ng serve` in front directory.
+- `mvn spring-boot:run` in back-end directory.

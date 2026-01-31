@@ -1,6 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserLoginComponent } from './user-login.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter, RouterModule } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { SimpleHeaderComponent } from '../headers/simple-header/simple-header.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('UserLoginComponent', () => {
   let component: UserLoginComponent;
@@ -8,7 +15,9 @@ describe('UserLoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserLoginComponent ]
+      declarations: [ UserLoginComponent, SimpleHeaderComponent],
+      imports:[RouterModule, MatFormFieldModule, MatDividerModule, MatCardModule, MatIconModule],
+      providers: [provideHttpClient(), provideRouter([])]
     })
     .compileComponents();
 

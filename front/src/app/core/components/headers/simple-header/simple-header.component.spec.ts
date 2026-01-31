@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SimpleHeaderComponent } from './simple-header.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { provideRouter, RouterModule } from '@angular/router';
 
 describe('SimpleHeaderComponent', () => {
   let component: SimpleHeaderComponent;
@@ -8,7 +10,9 @@ describe('SimpleHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SimpleHeaderComponent ]
+      declarations: [ SimpleHeaderComponent ], 
+      imports: [MatDividerModule, RouterModule],
+      providers:[provideRouter([])]
     })
     .compileComponents();
 

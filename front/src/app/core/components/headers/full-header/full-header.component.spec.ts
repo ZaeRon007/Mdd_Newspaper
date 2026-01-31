@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FullHeaderComponent } from './full-header.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter, RouterModule } from '@angular/router';
+import { MatDividerModule } from '@angular/material/divider';
 
 describe('FullHeaderComponent', () => {
   let component: FullHeaderComponent;
@@ -8,9 +11,11 @@ describe('FullHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FullHeaderComponent ]
+      declarations: [FullHeaderComponent],
+      imports:[MatDividerModule, RouterModule],
+      providers: [provideHttpClient(), provideRouter([])]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(FullHeaderComponent);
     component = fixture.componentInstance;

@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FullHeaderComponent } from 'src/app/core/components/headers/full-header/full-header.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { provideRouter, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 describe('CreateComponent', () => {
   let component: CreateComponent;
@@ -16,7 +17,7 @@ describe('CreateComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CreateComponent, FullHeaderComponent],
-      imports:[MatCardModule, MatIconModule, MatSelectModule, MatDividerModule, RouterModule],
+      imports:[MatCardModule, MatIconModule, MatSelectModule, MatDividerModule, RouterModule, FormsModule],
       providers: [provideHttpClient(), provideRouter([])]
     })
       .compileComponents();

@@ -8,6 +8,7 @@ import { SimpleHeaderComponent } from '../headers/simple-header/simple-header.co
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 describe('UserLoginComponent', () => {
   let component: UserLoginComponent;
@@ -16,7 +17,7 @@ describe('UserLoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ UserLoginComponent, SimpleHeaderComponent],
-      imports:[RouterModule, MatFormFieldModule, MatDividerModule, MatCardModule, MatIconModule],
+      imports:[RouterModule, MatFormFieldModule, MatDividerModule, MatCardModule, MatIconModule, FormsModule],
       providers: [provideHttpClient(), provideRouter([])]
     })
     .compileComponents();

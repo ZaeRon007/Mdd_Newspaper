@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { FullHeaderComponent } from 'src/app/core/components/headers/full-header/full-header.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { FormsModule } from '@angular/forms';
 
 describe('MeComponent', () => {
   let component: MeComponent;
@@ -15,7 +16,7 @@ describe('MeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MeComponent, FullHeaderComponent],
-      imports:[MatFormFieldModule, MatCardModule, MatDividerModule],
+      imports:[MatFormFieldModule, MatCardModule, MatDividerModule, FormsModule],
       providers: [provideHttpClient(),
         provideRouter([])]
     })

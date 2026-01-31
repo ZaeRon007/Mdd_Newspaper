@@ -1,3 +1,7 @@
+:root {
+    --customColor : rgba(116,81,235,1);
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -28,7 +32,7 @@ a, text, p {
 }
 
 .button-White:hover {
-    background-color: rgb(116,81,235);
+    background-color: var(--customColor);
 }
 
 .center {
@@ -38,25 +42,26 @@ a, text, p {
 }
 
 input {
-    height: 20px; 
-    border-width: 1px;   
+    height: 20px;
+    border-width: 1px;
     border-radius: 5px;
 }
 
 
-button[attr="mat-button"] {
+button {
     display: flex;
     margin-top: 15px;
     justify-content: center;
-    
+    align-self: center;
+
     align-items: center;
-    width: 120px;
+    width: 150px;
     height: 35px;
     border-radius: 5px;
     border-width: 1px;
     font-weight: 600;
-    
-    background-color: rgb(116,81,235);
+
+    background-color: var(--customColor);
     color: beige;
 }
 
@@ -64,12 +69,11 @@ button[attr="mat-button"] {
     margin-bottom: 15px;
 }
 
-mat-card.mat-card {
-    box-shadow: none !important;
-    background-color: rgb(245, 245, 245);
-    border-radius: 16px;
+.mat-mdc-card {
+    background-color: rgb(242, 242, 242) !important;
+    border-radius: 16px !important;
     padding: 1rem;
-    
+
     mat-card-header {
         justify-content: center;
     }
@@ -95,18 +99,13 @@ mat-card.mat-card {
         }
     }
 
-    mat-card-content {        
+    mat-card-content {
         p {
           font-size: 14px;
           text-align: left;
           margin: 0 0 16px 0;
-          width: 100%; 
+          width: 100%;
         }
-    }
-
-    button.mat-flat-button {
-        display: flex;
-        justify-self: center;
     }
 }
 
@@ -117,4 +116,10 @@ mat-card.mat-card {
 .custom-mat-divider {
     width: 95%;
     justify-self: center;
+}
+
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-outline-color: var(--customColor);
+  --mdc-outlined-text-field-focus-outline-color: var(--customColor);
+  --mdc-outlined-text-field-hover-outline-color: var(--customColor);
 }

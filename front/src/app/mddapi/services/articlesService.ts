@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, forkJoin, map, Observable, Subscription, switchMap, tap } from "rxjs";
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, forkJoin, map, Observable, switchMap, tap } from "rxjs";
 import { ArticleEntity } from "src/app/core/models/articleEntity";
 import { SubscribeEntity } from "src/app/core/models/subscribeEntity";
 import { environment } from "src/environments/environment.prod";

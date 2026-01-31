@@ -1,5 +1,10 @@
 .full-header {
 
+    .mat-divider {
+        border-top-color: black;
+        margin-bottom: 1rem;
+    }
+
     .flex-row.space-btwn {
         justify-content: space-between;
 
@@ -16,8 +21,8 @@
                 margin-left: 10px;
                 margin-right: 10px;
             }
-    
-            
+
+
         }
 
         a {
@@ -27,25 +32,21 @@
         a.active {
             color: rgb(116, 81, 235);
         }
-        
+
 
         .profile {
             color: gray;
         }
-        
+
         .profile mat-icon {
             transform: scale(2);
         }
-        
-        
+
+
         .profile.active {
             color: rgb(116, 81, 235);
         }
-        
-    }
 
-    .mat-divider {
-        margin-bottom: 1rem;
     }
 
 }
@@ -86,36 +87,36 @@
         border: 1px solid black;
         height: 100%;
         width: 100%;
-    
+
         ::ng-deep .mat-drawer-inner-container {
             background-color: rgb(245, 245, 245);
         }
-    
+
         .flex-column {
             margin-top: 150px;
             margin-right: 35px;
             justify-self: right;
 
         }
-    
+
         .flex-column a {
             height: 50px;
             align-self: center;
             justify-self: center;
         }
-    
+
         .organize .profile-button {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-    
+
             position: absolute;
             bottom: 10px;
             right: 5px;
         }
-    
-    
+
+
     }
 }
 

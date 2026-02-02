@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from '../../services/userService';
 import { of } from 'rxjs';
 import { ArticleService } from '../../services/articlesService';
+import { ThemeService } from '../../services/themeService';
+import { DisplayThemes } from 'src/app/core/models/dto/displayTheme';
 
 describe('MeComponent', () => {
   let component: MeComponent;
@@ -20,15 +22,21 @@ describe('MeComponent', () => {
 
   let mockUserService: any;
   let mockArticlesService: any;
+  let mockThemeService: any;
 
   beforeEach(async () => {
 
     mockUserService = {
       getMe: jest.fn(),
+      updateMe: jest.fn(),
     }
 
     mockArticlesService = {
       setupThemeSubscriptionDisplay: jest.fn(),
+    }
+
+    mockThemeService = {
+      unSubscribeToTheme: jest.fn(),
     }
 
     await TestBed.configureTestingModule({
@@ -49,7 +57,8 @@ describe('MeComponent', () => {
         provideHttpClient(),
         provideRouter([]),
         { provide: UserService, useValue: mockUserService },
-        { provide: ArticleService, useValue: mockArticlesService }
+        { provide: ArticleService, useValue: mockArticlesService },
+        { provide: ThemeService, useValue: mockThemeService },
       ]
     }).compileComponents();
 
@@ -70,13 +79,13 @@ describe('MeComponent', () => {
     const themes = [
       {
         id: '1',
-        title:'sport',
+        title: 'sport',
         content: 'content',
         subscribed: true
       },
       {
         id: '2',
-        title:'cuisine',
+        title: 'cuisine',
         content: 'content',
         subscribed: true
       }
@@ -99,5 +108,77 @@ describe('MeComponent', () => {
     expect(component.displayThemes$.value).not.toBeNull();
     expect(component.displayThemes$.value.at(0)?.title).toBe('sport');
     expect(component.displayThemes$.value.at(1)?.title).toBe('cuisine');
-  })
+  });
+
+  it('should update user informations', () => {
+    const user = { 
+      name: 'roberto', 
+      email: 'roberto@gmail.com' 
+    };
+
+    mockUserService.getMe.mockReturnValue(of(user));
+    mockArticlesService.setupThemeSubscriptionDisplay.mockReturnValue(of());
+    mockUserService.updateMe.mockReturnValue(of());
+
+    fixture.detectChanges();
+
+    component.onSubmit();
+
+    expect(component.user.email).toBe('roberto@gmail.com');
+    expect(component.user.name).toBe('roberto');
+  });
+
+  it('should have user informations', () => {
+    const user = { 
+      name: 'roberto', 
+      email: 'roberto@gmail.com' 
+    };
+    
+    mockUserService.getMe.mockReturnValue(of(user));
+    mockArticlesService.setupThemeSubscriptionDisplay.mockReturnValue(of());
+
+    fixture.detectChanges();
+
+    expect(component.user).toBe(user);
+    expect(component.originalEmail).toBe(user.email);
+    expect(component.originalUsername).toBe(user.name);
+  });
+
+  it('should unsubscribe', () => {
+    const mockThemes = [
+      {
+        id: 1,
+        title: 'sport',
+        content: 'content',
+        subscribed: true,
+      },
+      {
+        id: 2,
+        title: 'cuisine',
+        content: 'content',
+        subscribed: true,
+      },
+      {
+        id: 3,
+        title: 'actualités',
+        content: 'content',
+        subscribed: true,
+      },
+    ] as DisplayThemes[];
+
+
+    mockUserService.getMe.mockReturnValue(of());
+    mockArticlesService.setupThemeSubscriptionDisplay.mockReturnValue(of());
+    mockThemeService.unSubscribeToTheme.mockReturnValue(of(mockThemes))
+
+    component.displayThemes$.next(mockThemes);
+
+    fixture.detectChanges();
+
+    component.onClickUnSubscribe(3);
+
+    expect(component.displayThemes$.value.length).toBe(2);
+    expect(component.displayThemes$.value.at(0)?.title).toBe('sport')
+    expect(component.displayThemes$.value.at(1)?.title).toBe('cuisine')
+  });
 });

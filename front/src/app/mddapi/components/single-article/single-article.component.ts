@@ -19,12 +19,15 @@ export class SingleArticleComponent implements OnInit, OnDestroy {
   private commentSubscription: Subscription = new Subscription();
   private commentCreationSubscription: Subscription = new Subscription();
 
-  ID = this.route.snapshot.paramMap.get('id');
-
-
+  ID: string = '';
+  
   constructor(private articleService: ArticleService,
-              private commentService: CommentService,
-              private route: ActivatedRoute) { }
+    private commentService: CommentService,
+    private route: ActivatedRoute) { 
+      const input = this.route.snapshot.paramMap.get('id');
+      if(input != null)
+        this.ID = input;
+    }
 
   ngOnInit(): void {
 
@@ -37,21 +40,21 @@ export class SingleArticleComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    if(!!this.comment.content){
+    if (!!this.comment.content) {
       this.commentCreationSubscription = this.commentService.postComment(Number.parseInt(this.ID!), this.comment.content).subscribe((newComment: DisplayComment) => {
         const updatedComments = this.comments$.getValue();
         updatedComments.push(newComment);
         this.comments$.next(updatedComments);
-  
+
         this.comment = new DisplayComment();
       });
     }
   }
 
   ngOnDestroy(): void {
-      this.articleSubscription.unsubscribe();
-      this.commentSubscription.unsubscribe();
-      this.commentCreationSubscription.unsubscribe();
+    this.articleSubscription.unsubscribe();
+    this.commentSubscription.unsubscribe();
+    this.commentCreationSubscription.unsubscribe();
   }
 
 

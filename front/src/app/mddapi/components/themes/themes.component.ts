@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ThemeService } from '../../services/themeService';
-import { ArticleService } from '../../services/articlesService';
+import { ThemeService } from '../../services/theme.service';
+import { ArticleService } from '../../services/articles.service';
 import { BehaviorSubject, map, Observable, Subscription, tap } from 'rxjs';
 import { DisplayThemes } from 'src/app/core/models/dto/displayTheme';
 

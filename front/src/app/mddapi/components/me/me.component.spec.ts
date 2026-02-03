@@ -10,10 +10,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserService } from '../../services/userService';
+import { UserService } from '../../services/user.service';
 import { of } from 'rxjs';
-import { ArticleService } from '../../services/articlesService';
-import { ThemeService } from '../../services/themeService';
+import { ArticleService } from '../../services/articles.service';
+import { ThemeService } from '../../services/theme.service';
 import { DisplayThemes } from 'src/app/core/models/dto/displayTheme';
 
 describe('MeComponent', () => {

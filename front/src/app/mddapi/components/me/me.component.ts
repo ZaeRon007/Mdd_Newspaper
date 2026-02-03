@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { userEntity } from 'src/app/core/models/userEntity';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
-import { ThemeService } from '../../services/themeService';
+import { ThemeService } from '../../services/theme.service';
 import { DisplayThemes } from 'src/app/core/models/dto/displayTheme';
-import { UserService } from '../../services/userService';
-import { ArticleService } from '../../services/articlesService';
+import { UserService } from '../../services/user.service';
+import { ArticleService } from '../../services/articles.service';
 
 @Component({
   selector: 'app-me',

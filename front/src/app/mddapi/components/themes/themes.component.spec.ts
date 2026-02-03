@@ -6,8 +6,8 @@ import { FullHeaderComponent } from 'src/app/core/components/headers/full-header
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { provideRouter, RouterModule } from '@angular/router';
-import { ArticleService } from '../../services/articlesService';
-import { ThemeService } from '../../services/themeService';
+import { ArticleService } from '../../services/articles.service';
+import { ThemeService } from '../../services/theme.service';
 import { DisplayThemes } from 'src/app/core/models/dto/displayTheme';
 import { of } from 'rxjs';
 

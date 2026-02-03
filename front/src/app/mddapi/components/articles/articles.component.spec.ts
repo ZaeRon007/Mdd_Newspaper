@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { provideRouter, RouterModule } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
 import { of } from 'rxjs';
-import { ArticleService } from '../../services/articlesService';
+import { ArticleService } from '../../services/articles.service';
 import { MatCardModule } from '@angular/material/card';
 
 describe('ArticlesComponent', () => {

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { ArticleService } from '../../services/articlesService';
+import { ArticleService } from '../../services/articles.service';
 import { Subscription } from 'rxjs';
 import { DisplayArticle } from 'src/app/core/models/dto/displayArticle';
 

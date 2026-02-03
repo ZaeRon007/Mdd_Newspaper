@@ -11,7 +11,7 @@ import { provideRouter, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ArticleService } from '../../services/articlesService';
+import { ArticleService } from '../../services/articles.service';
 import { of } from 'rxjs';
 
 describe('CreateComponent', () => {

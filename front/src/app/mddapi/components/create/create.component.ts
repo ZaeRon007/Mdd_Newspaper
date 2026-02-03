@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { themeEntity } from 'src/app/core/models/themeEntity';
-import { ThemeService } from '../../services/themeService';
+import { ThemeService } from '../../services/theme.service';
 import { CreateArticle } from 'src/app/core/models/dto/createArticle';
 import { Subscription } from 'rxjs';
-import { ArticleService } from '../../services/articlesService';
+import { ArticleService } from '../../services/articles.service';
 
 
 @Component({

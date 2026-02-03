@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ArticleService } from '../../services/articlesService';
+import { ArticleService } from '../../services/articles.service';
 import { DisplayArticle } from 'src/app/core/models/dto/displayArticle';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
-import { CommentService } from '../../services/commentService';
+import { CommentService } from '../../services/comment.service';
 import { DisplayComment } from 'src/app/core/models/dto/displayComment';
 
 @Component({

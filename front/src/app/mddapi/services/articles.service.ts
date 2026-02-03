@@ -4,8 +4,8 @@ import { BehaviorSubject, forkJoin, map, Observable, switchMap, tap } from "rxjs
 import { ArticleEntity } from "src/app/core/models/articleEntity";
 import { SubscribeEntity } from "src/app/core/models/subscribeEntity";
 import { environment } from "src/environments/environment.prod";
-import { ThemeService } from "./themeService";
-import { UserService } from "./userService";
+import { ThemeService } from "./theme.service";
+import { UserService } from "./user.service";
 import { DisplayArticle } from "src/app/core/models/dto/displayArticle";
 import { CreateArticle } from "src/app/core/models/dto/createArticle";
 import { DisplayThemes } from "src/app/core/models/dto/displayTheme";

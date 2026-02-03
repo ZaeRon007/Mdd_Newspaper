@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, forkJoin, map, Observable, switchMap, tap } from "rxjs";
 import { CommentEntity } from "src/app/core/models/CommentEntity";
 import { environment } from "src/environments/environment.prod";
-import { UserService } from "./userService";
+import { UserService } from "./user.service";
 import { DisplayComment } from "src/app/core/models/dto/displayComment";
 
 @Injectable({

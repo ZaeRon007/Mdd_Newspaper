@@ -5,7 +5,7 @@ import { DisplayThemes } from "src/app/core/models/dto/displayTheme";
 import { SubscribeEntity } from "src/app/core/models/subscribeEntity";
 import { themeEntity } from "src/app/core/models/themeEntity";
 import { environment } from "src/environments/environment.prod";
-import { ArticleService } from "./articlesService";
+import { ArticleService } from "./articles.service";
 
 @Injectable({
     providedIn: 'root'

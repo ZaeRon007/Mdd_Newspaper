@@ -100,30 +100,34 @@ export class ArticleService {
    */
   public setupArticles(): Observable<DisplayArticle[]> {
     return this.getAllSubscribes().pipe(
-      switchMap((subscriptions: SubscribeEntity[]) => {
-        const subscriptions$ = subscriptions.map(subscription => this.getArticlesByThemeId(subscription.themeId).pipe(
-
-          switchMap((articles: ArticleEntity[]) => {
-            const displayArticle$ = articles.map(article => this.userService.getUsernameById(article.userId).pipe(
-              map(username => {
-                const displayArticle: DisplayArticle = new DisplayArticle();
-                displayArticle.id = article.id;
-                displayArticle.title = article.title;
-                displayArticle.content = article.content;
-                displayArticle.date = article.createdAt;
-                displayArticle.user = username;
-                return displayArticle;
-              })
-            ));
-            return forkJoin(displayArticle$);
-          })
-        ));
-        return forkJoin(subscriptions$);
-
-      }),
-      map((nestedArticles: DisplayArticle[][]) => {
-        return nestedArticles.flat();
-      })
+      switchMap(subscriptions => 
+        forkJoin(
+          subscriptions.map(sub => 
+            this.getArticlesByThemeId(sub.themeId).pipe(
+              switchMap(articles => 
+                forkJoin(
+                  articles.map(article =>
+                    forkJoin({
+                      user: this.userService.getUsernameById(article.id),
+                      theme: this.themeService.getThemeNameById(article.themeId),
+                    }).pipe(
+                      map(({ user, theme}) => ({
+                        id: article.id,
+                        title: article.title,
+                        content: article.content,
+                        date: article.createdAt,
+                        user,
+                        theme,
+                      }))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      ),
+      map(nested => nested.flat())
     );
   }
 

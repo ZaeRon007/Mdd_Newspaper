@@ -24,8 +24,12 @@ public class UserService {
     @Autowired
     PasswordEncoder PasswordEncoder;
 
+    @Autowired 
+    TimeService timeService;
+
     @Autowired
     private AuthenticationManager authenticationManager;
+
 
     /**
      * create a new user from database
@@ -35,9 +39,9 @@ public class UserService {
     public UserEntity createUser(UserRegisterAndLoginDto userRegisterDto){
         UserEntity userToAdd = new UserEntity(userRegisterDto.getName(),
                                             userRegisterDto.getEmail(),
-                                            new TimeService().getTime());
+                                            timeService.getTime());
                                                     
-        userToAdd.setUpdatedAt(new TimeService().getTime());
+        userToAdd.setUpdatedAt(timeService.getTime());
         userToAdd.setPassword(PasswordEncoder.encode(userRegisterDto.getPassword()));
         return userToAdd;
     }
@@ -90,7 +94,7 @@ public class UserService {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, userLoginDto.getPassword()));
             UserEntity userToAdd = userRepository.findByEmail(username);
-            userToAdd.setUpdatedAt(new TimeService().getTime());
+            userToAdd.setUpdatedAt(timeService.getTime());
             userRepository.save(userToAdd);
             
             return jwtService.generateToken(userToAdd);
@@ -131,7 +135,7 @@ public class UserService {
         UserEntity userEntity = userRepository.findById(userDto.getId());
         userEntity.setEmail(userDto.getEmail());
         userEntity.setName(userDto.getName());
-        userEntity.setUpdatedAt(new TimeService().getTime());
+        userEntity.setUpdatedAt(timeService.getTime());
         return userRepository.save(userEntity).ToUserDto();
     }
     

@@ -108,7 +108,7 @@ export class ArticleService {
                 forkJoin(
                   articles.map(article =>
                     forkJoin({
-                      user: this.userService.getUsernameById(article.id),
+                      user: this.userService.getUsernameById(article.userId),
                       theme: this.themeService.getThemeNameById(article.themeId),
                     }).pipe(
                       map(({ user, theme}) => ({

@@ -154,6 +154,7 @@ export class ArticleService {
               displayThemes.id = res.id;
               displayThemes.title = res.name;
               displayThemes.content = res.content;
+              displayThemes.subscribed = true;
               return displayThemes;
             })
           )

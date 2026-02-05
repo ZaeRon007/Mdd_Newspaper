@@ -24,31 +24,34 @@ import com.openclassrooms.mddapi.services.CustomUserDetailsService;
 @Configuration
 @EnableWebSecurity
 public class mddapiSecurityConfig {
-    @Autowired
+	@Autowired
 	private SecretKey jwtSecretKey;
 
-    @Autowired
-    private CustomUserDetailsService customUserDetailsService;
-	
+	@Autowired
+	private CustomUserDetailsService customUserDetailsService;
+
 	/**
-	 * Fonction permettant de configurer une chaine de filtre : 
+	 * Fonction permettant de configurer une chaine de filtre :
 	 * - Le Cross Origin Platform est activé avec les paramètres par défaut
-	 * - Les routes "/api/auth/* sont publiques et le reste est privé (nécessite une authentification)"
-	 * - Oauth2 est configuré pour utiliser jwt comme méthode d'authentification (Json Web Token)
+	 * - Les routes "/api/auth/* sont publiques et le reste est privé (nécessite une
+	 * authentification)"
+	 * - Oauth2 est configuré pour utiliser jwt comme méthode d'authentification
+	 * (Json Web Token)
 	 */
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		return http
-			.cors(Customizer.withDefaults())
-			.csrf(csrf -> csrf.disable())
-			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-			.authorizeHttpRequests(auth -> auth 
-										.requestMatchers(	"/api/auth/register", 
-																		"/api/auth/login").permitAll()
-										.anyRequest().authenticated())
-			.httpBasic(Customizer.withDefaults())	
-			.oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()))
-			.build();
+				.cors(Customizer.withDefaults())
+				.csrf(csrf -> csrf.disable())
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authorizeHttpRequests(auth -> auth
+						.requestMatchers("/api/auth/register",
+								"/api/auth/login")
+						.permitAll()
+						.anyRequest().authenticated())
+				.httpBasic(Customizer.withDefaults())
+				.oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()))
+				.build();
 	}
 
 	/**
@@ -75,18 +78,21 @@ public class mddapiSecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 
-
 	/**
-	 * Fonction permettant de configuer et retourner une instance d'auhtenticationManager pour gérer les authentications dans l'application
+	 * Fonction permettant de configuer et retourner une instance
+	 * d'auhtenticationManager pour gérer les authentications dans l'application
+	 * 
 	 * @param httpSecurity
 	 * @param passwordEncoder
-	 * @return retourne une instance d'auhtenticationManager 
+	 * @return retourne une instance d'auhtenticationManager
 	 */
 	@Bean
-	public AuthenticationManager authenticationManager(HttpSecurity httpSecurity, PasswordEncoder passwordEncoder) throws Exception {
-		AuthenticationManagerBuilder authenticationManagerBuilder = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
+	public AuthenticationManager authenticationManager(HttpSecurity httpSecurity, PasswordEncoder passwordEncoder)
+			throws Exception {
+		AuthenticationManagerBuilder authenticationManagerBuilder = httpSecurity
+				.getSharedObject(AuthenticationManagerBuilder.class);
 		authenticationManagerBuilder.userDetailsService(customUserDetailsService)
-		.passwordEncoder(passwordEncoder);
+				.passwordEncoder(passwordEncoder);
 
 		return authenticationManagerBuilder.build();
 	}

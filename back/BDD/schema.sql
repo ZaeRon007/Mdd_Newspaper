@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `theme` (
   `content` VARCHAR(2000)
 );
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
   `name` VARCHAR(40),
   `email` VARCHAR(255),
@@ -36,10 +36,10 @@ CREATE TABLE IF NOT EXISTS `user_subscribes` (
 );
 
 ALTER TABLE `article` ADD FOREIGN KEY (`theme_id`) REFERENCES `theme`(`id`);
-ALTER TABLE `article` ADD FOREIGN KEY (`user_id`) REFERENCES `user`(`id`);
+ALTER TABLE `article` ADD FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
 
-ALTER TABLE `comment` ADD FOREIGN KEY (`user_id`) REFERENCES `user`(`id`);
+ALTER TABLE `comment` ADD FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
 ALTER TABLE `comment` ADD FOREIGN KEY (`article_id`) REFERENCES `article`(`id`);
 
-ALTER TABLE `user_subscribes` ADD FOREIGN KEY (`user_id`) REFERENCES `user`(`id`);
+ALTER TABLE `user_subscribes` ADD FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
 ALTER TABLE `user_subscribes` ADD FOREIGN KEY (`theme_id`) REFERENCES `theme`(`id`);

@@ -1,8 +1,6 @@
 package com.openclassrooms.mddapi.services;
 
 import java.text.ParseException;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.openclassrooms.mddapi.model.CommentEntity;
@@ -12,16 +10,20 @@ import com.openclassrooms.mddapi.repository.CommentRepository;
 @Service
 public class CommentService {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final CommentRepository commentRepository;
 
-    @Autowired
-    private CommentRepository commentRepository;
+    CommentService(CommentRepository commentRepositoryInput,
+            UserService userServiceInput) {
+        userService = userServiceInput;
+        commentRepository = commentRepositoryInput;
+    }
 
     /**
      * Allow user to comment an Article
+     * 
      * @param article_id article id to comment
-     * @param content text to post
+     * @param content    text to post
      * @return CommentDto : already transformed CommentEntity for front-end
      * @throws ParseException
      */
@@ -43,11 +45,12 @@ public class CommentService {
 
     /**
      * Get all comments from an article id
+     * 
      * @param id article id
      * @return Iterable<CommentEntity>: a list of CommentEntity
      */
     public Iterable<CommentEntity> getCommentsByArticleId(int id) {
         return commentRepository.findAllByArticleId(id);
     }
-    
+
 }

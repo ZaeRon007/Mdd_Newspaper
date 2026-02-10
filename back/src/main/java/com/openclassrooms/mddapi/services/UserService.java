@@ -1,7 +1,6 @@
 package com.openclassrooms.mddapi.services;
 
 import java.text.ParseException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,22 +14,24 @@ import com.openclassrooms.mddapi.repository.UserRepository;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired 
-    private JwtService jwtService;
-
-    @Autowired
-    PasswordEncoder PasswordEncoder;
-
-    @Autowired 
-    TimeService timeService;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
+    private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
+    private final TimeService timeService;
+    private final AuthenticationManager authenticationManager;
 
 
+    UserService(UserRepository userRepositoryInput,
+    JwtService jwtServiceInput,
+    PasswordEncoder passwordEncoderInput,
+    TimeService timeServiceInput,
+    AuthenticationManager authenticationManagerInput){
+        userRepository = userRepositoryInput;
+        jwtService = jwtServiceInput;
+        passwordEncoder = passwordEncoderInput;
+        timeService = timeServiceInput;
+        authenticationManager = authenticationManagerInput;
+    }
     /**
      * create a new user from database
      * @param userRegisterDto a user to register
@@ -42,7 +43,7 @@ public class UserService {
                                             timeService.getTime());
                                                     
         userToAdd.setUpdatedAt(timeService.getTime());
-        userToAdd.setPassword(PasswordEncoder.encode(userRegisterDto.getPassword()));
+        userToAdd.setPassword(passwordEncoder.encode(userRegisterDto.getPassword()));
         return userToAdd;
     }
 
@@ -84,7 +85,7 @@ public class UserService {
      */
     public String login(UserRegisterAndLoginDto userLoginDto) {
         String username = "";
-        if(userLoginDto.getEmail() == ""){
+        if (userLoginDto.getEmail() == null || userLoginDto.getEmail().isEmpty()){
             username = userRepository.findByName(userLoginDto.getName()).getEmail();
         } else {
             username = userLoginDto.getEmail();
@@ -100,7 +101,7 @@ public class UserService {
             return jwtService.generateToken(userToAdd);
         } catch (Exception e) {
             System.out.printf("Exception: %s\n",e);
-            return "";
+            return null;
         }
     }
 

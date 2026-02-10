@@ -1,7 +1,6 @@
 package com.openclassrooms.mddapi.services;
 
 import java.util.ArrayList;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,24 +11,28 @@ import com.openclassrooms.mddapi.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    
-    @Autowired
-    UserRepository userRepository;
+
+    private final UserRepository userRepository;
+
+    CustomUserDetailsService(UserRepository userRepositoryInput) {
+        userRepository = userRepositoryInput;
+    }
 
     /**
      * load a user from database by it's email
+     * 
      * @param email
      * @return UserDetails
      */
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserEntity user = userRepository.findByEmail(email);
 
-        if(user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + email);
         }
-        return new User(user.getEmail(), 
-                        user.getPassword(), 
-                        new ArrayList<>()); 
+        return new User(user.getEmail(),
+                user.getPassword(),
+                new ArrayList<>());
     }
 }

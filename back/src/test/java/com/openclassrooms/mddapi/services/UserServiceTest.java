@@ -52,9 +52,6 @@ public class UserServiceTest {
     @Mock
     private AuthenticationManager authenticationManager;
 
-    // @Mock
-    // private SecurityContextHolder securityContextHolder;
-
     @Test
     @DisplayName("should create a new user")
     public void createUser() {

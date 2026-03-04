@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.services;
 
-import java.text.ParseException;
 import org.springframework.stereotype.Service;
 
 import com.openclassrooms.mddapi.model.CommentEntity;
@@ -25,9 +24,8 @@ public class CommentService {
      * @param article_id article id to comment
      * @param content    text to post
      * @return CommentDto : already transformed CommentEntity for front-end
-     * @throws ParseException
      */
-    public CommentDto commentArticle(int article_id, String content) throws ParseException {
+    public CommentDto commentArticle(int article_id, String content) {
         CommentDto commentToReturn = new CommentDto();
         int userId = userService.getMe().getId();
         CommentEntity commentToSave = new CommentEntity();

@@ -1,4 +1,4 @@
-package com.openclassrooms.controllers;
+package com.openclassrooms.mddapi.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -18,7 +18,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.openclassrooms.mddapi.controllers.CommentController;
 import com.openclassrooms.mddapi.model.CommentEntity;
 import com.openclassrooms.mddapi.model.dto.CommentDto;
 import com.openclassrooms.mddapi.services.CommentService;

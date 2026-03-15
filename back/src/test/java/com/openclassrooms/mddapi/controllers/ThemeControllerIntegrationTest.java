@@ -34,6 +34,7 @@ public class ThemeControllerIntegrationTest {
     private String token;
 
     @BeforeAll
+    @Test
     @DisplayName("should login user")
     public void shouldLoginUser() throws Exception {
         String authRequest = "{" +
@@ -51,6 +52,7 @@ public class ThemeControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("should return themes")
     public void shouldGetThemes() throws Exception {
         mockMvc.perform(get("/api/themes")
                 .header("Authorization", "Bearer " + token)
@@ -59,6 +61,7 @@ public class ThemeControllerIntegrationTest {
     }
 
     @Test
+    @DisplayName("should return a theme by its id")
     public void shouldGetThemeById() throws Exception{
         mockMvc.perform(get("/api/theme/" + 1)
                 .header("Authorization", "Bearer " + token)

@@ -5,7 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ public class UserControllerIntegrationTest {
 
         private String token;
 
-        @BeforeAll
+        @BeforeEach
         @DisplayName("should login user")
         public void shouldLoginUser() throws Exception {
                 String authRequest = "{" +
@@ -80,7 +80,7 @@ public class UserControllerIntegrationTest {
         @DisplayName("should return put user")
         public void shouldReturnPutUser() throws Exception {
                 String body = "{" +
-                                "\"id\": 1," +
+                                "\"id\": 0," +
                                 "\"name\": \"anotherName\"," +
                                 "\"email\": \"email@yahoo.com\"" +
                                 "}";
@@ -90,7 +90,7 @@ public class UserControllerIntegrationTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(body))
                                 .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.id").value(1))
+                                .andExpect(jsonPath("$.id").value(0))
                                 .andExpect(jsonPath("$.name").value("anotherName"))
                                 .andExpect(jsonPath("$.email").value("email@yahoo.com"));
         }

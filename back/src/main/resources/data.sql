@@ -11,12 +11,17 @@ VALUES
 
 INSERT INTO `article` (`id`,`title`,`date`,`content`,`theme_id`,`user_id`)
 VALUES
-(1,'title','2026-02-02 17:25:19','content',1,1),
-(2,'title','2026-02-02 17:25:19','content',2,1);
+(5,'title5','2026-02-02 17:25:19','content',1,1),
+(6,'title6','2026-02-02 17:25:19','content',2,1);
 
 INSERT INTO `comment` (`content`,`user_id`,`article_id`)
 VALUES 
-('content1',1,1),
-('content2',1,1),
-('content3',1,1),
-('content4',1,1);
+('content1',1,5),
+('content2',1,5),
+('content3',1,5),
+('content4',1,5);
+
+INSERT INTO `user_subscribes` (`user_id`,`theme_id`)
+VALUES
+(1,1),
+(1,2);

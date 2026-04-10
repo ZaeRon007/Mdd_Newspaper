@@ -49,7 +49,7 @@ public class CommentControllerIntegrationTest {
 
                 when(userRepository.findByEmail(anyString())).thenReturn(user);
 
-                mockMvc.perform(post("/api/comment/article/2")
+                mockMvc.perform(post("/api/comment/article/6")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(postRequest))
                                 .andExpect(status().isOk());
@@ -59,7 +59,7 @@ public class CommentControllerIntegrationTest {
         @DisplayName("should get all comments")
         @WithMockUser(username = "pedro@gmail.com")
         public void shouldGetComments() throws Exception {
-                mockMvc.perform(get("/api/comment/article/1")
+                mockMvc.perform(get("/api/comment/article/5")
                                 .contentType(MediaType.APPLICATION_JSON))
                                 .andExpect(status().isOk())
                                 .andExpect(jsonPath("$.[0].content").value("content1"))

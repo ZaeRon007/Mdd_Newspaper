@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.services;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.openclassrooms.mddapi.model.UserEntity;
@@ -117,7 +118,13 @@ public class UserService {
      */
     public UserDto getMe() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByEmail(username).ToUserDto();
+
+        UserEntity user = userRepository.findByEmail(username);
+
+        if (user == null)
+            throw new UsernameNotFoundException("username does not exist !!!");
+
+        return user.ToUserDto();
     }
 
     /**

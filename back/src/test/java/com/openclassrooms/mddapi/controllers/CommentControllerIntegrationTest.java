@@ -34,9 +34,6 @@ public class CommentControllerIntegrationTest {
         @Autowired
         private MockMvc mockMvc;
 
-        @Mock
-        private UserRepository userRepository;
-
         @Test
         @DisplayName("should post a new comment")
         @WithMockUser(username = "pedro@gmail.com")
@@ -44,10 +41,6 @@ public class CommentControllerIntegrationTest {
                 String postRequest = "{" +
                                 "\"comment\": \"comment\"" +
                                 "}";
-
-                UserEntity user = new UserEntity("pedro", "pedro@gmail.com", "2026-02-02 17:25:19");
-
-                when(userRepository.findByEmail(anyString())).thenReturn(user);
 
                 mockMvc.perform(post("/api/comment/article/6")
                                 .contentType(MediaType.APPLICATION_JSON)

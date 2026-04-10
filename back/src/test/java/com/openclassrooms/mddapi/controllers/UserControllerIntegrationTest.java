@@ -71,7 +71,7 @@ public class UserControllerIntegrationTest {
                                 .header("Authorization", "Bearer " + token)
                                 .contentType(MediaType.APPLICATION_JSON))
                                 .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.id").value(0))
+                                .andExpect(jsonPath("$.id").value(3))
                                 .andExpect(jsonPath("$.name").value("pedro"))
                                 .andExpect(jsonPath("$.email").value("pedro@gmail.com"));
         }
@@ -80,7 +80,7 @@ public class UserControllerIntegrationTest {
         @DisplayName("should return put user")
         public void shouldReturnPutUser() throws Exception {
                 String body = "{" +
-                                "\"id\": 0," +
+                                "\"id\": 3," +
                                 "\"name\": \"anotherName\"," +
                                 "\"email\": \"email@yahoo.com\"" +
                                 "}";
@@ -90,7 +90,7 @@ public class UserControllerIntegrationTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(body))
                                 .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.id").value(0))
+                                .andExpect(jsonPath("$.id").value(3))
                                 .andExpect(jsonPath("$.name").value("anotherName"))
                                 .andExpect(jsonPath("$.email").value("email@yahoo.com"));
         }
@@ -98,11 +98,11 @@ public class UserControllerIntegrationTest {
         @Test
         @DisplayName("should found user by its id")
         public void shouldFoundUserById() throws Exception {
-                mockMvc.perform(get("/api/user/" + 0)
+                mockMvc.perform(get("/api/user/" + 3)
                                 .header("Authorization", "Bearer " + token)
                                 .contentType(MediaType.APPLICATION_JSON))
                                 .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.id").value(0))
+                                .andExpect(jsonPath("$.id").value(3))
                                 .andExpect(jsonPath("$.name").value("pedro"))
                                 .andExpect(jsonPath("$.email").value("pedro@gmail.com"));
         }

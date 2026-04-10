@@ -7,21 +7,21 @@ VALUES
 
 INSERT INTO `users` (`id`,`name`,`email`,`password`,`created_at`,`updated_at`)
 VALUES
-(1,'pedro','pedro@gmail.com','$2a$10$9Ln4wYxk1zC3oXk4RUR/VO7aaDyMdw1CC2Z1fRkJRv5SfBxVDxSjK','2026-02-02 17:25:19','2026-02-02 17:25:19');
+(3,'pedro','pedro@gmail.com','$2a$10$9Ln4wYxk1zC3oXk4RUR/VO7aaDyMdw1CC2Z1fRkJRv5SfBxVDxSjK','2026-02-02 17:25:19','2026-02-02 17:25:19');
 
 INSERT INTO `article` (`id`,`title`,`date`,`content`,`theme_id`,`user_id`)
 VALUES
-(5,'title5','2026-02-02 17:25:19','content',1,1),
-(6,'title6','2026-02-02 17:25:19','content',2,1);
+(5,'title5','2026-02-02 17:25:19','content',1,3),
+(6,'title6','2026-02-02 17:25:19','content',2,3);
 
 INSERT INTO `comment` (`content`,`user_id`,`article_id`)
 VALUES 
-('content1',1,5),
-('content2',1,5),
-('content3',1,5),
-('content4',1,5);
+('content1',3,5),
+('content2',3,5),
+('content3',3,5),
+('content4',3,5);
 
 INSERT INTO `user_subscribes` (`user_id`,`theme_id`)
 VALUES
-(1,1),
-(1,2);
+(3,1),
+(3,2);

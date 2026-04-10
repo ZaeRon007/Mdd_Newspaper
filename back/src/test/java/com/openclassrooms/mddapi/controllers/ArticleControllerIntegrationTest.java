@@ -46,7 +46,7 @@ public class ArticleControllerIntegrationTest {
                         .andExpect(jsonPath("$.createdAt").value("2026-02-02T16:25:19.000+00:00"))
                         .andExpect(jsonPath("$.content").value("content"))
                         .andExpect(jsonPath("$.themeId").value(1))
-                        .andExpect(jsonPath("$.userId").value(1));
+                        .andExpect(jsonPath("$.userId").value(3));
     }
 
     @Test
@@ -84,10 +84,10 @@ public class ArticleControllerIntegrationTest {
         mockMvc.perform(get("/api/subscribes"))
                         .andExpect(status().isOk())
                         .andExpect(jsonPath("$.[0].id").value(1))
-                        .andExpect(jsonPath("$.[0].userId").value(1))
+                        .andExpect(jsonPath("$.[0].userId").value(3))
                         .andExpect(jsonPath("$.[0].themeId").value(1))
                         .andExpect(jsonPath("$.[1].id").value(2))
-                        .andExpect(jsonPath("$.[1].userId").value(1))
+                        .andExpect(jsonPath("$.[1].userId").value(3))
                         .andExpect(jsonPath("$.[1].themeId").value(2));
     }
 

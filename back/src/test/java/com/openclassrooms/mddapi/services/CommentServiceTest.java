@@ -51,7 +51,7 @@ public class CommentServiceTest {
         CommentDto commentDto = commentService.commentArticle(1, content);
 
         assertNotNull(commentDto);
-        assertEquals(commentDto.getContent(), content);
+        assertEquals(commentDto.getContent(), content.getComment());
         assertEquals(commentDto.getUser(), username);
 
     }

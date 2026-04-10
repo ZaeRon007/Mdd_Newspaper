@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.openclassrooms.mddapi.model.dto.CommentRequestDto;
 import com.openclassrooms.mddapi.services.CommentService;
 
 @RestController
@@ -21,8 +22,8 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/{id}")
-    public ResponseEntity<?> commentArticle(@PathVariable String id, @RequestBody String content) throws NumberFormatException, ParseException{
-        return ResponseEntity.ok().body(commentService.commentArticle(Integer.parseInt(id), content));
+    public ResponseEntity<?> commentArticle(@PathVariable String id, @RequestBody CommentRequestDto comment) throws NumberFormatException, ParseException{
+        return ResponseEntity.ok().body(commentService.commentArticle(Integer.parseInt(id), comment));
     }
 
     @GetMapping("/{id}")

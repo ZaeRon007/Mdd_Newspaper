@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.openclassrooms.mddapi.model.CommentEntity;
 import com.openclassrooms.mddapi.model.dto.CommentDto;
+import com.openclassrooms.mddapi.model.dto.CommentRequestDto;
 import com.openclassrooms.mddapi.repository.CommentRepository;
 
 @Service
@@ -25,15 +26,15 @@ public class CommentService {
      * @param content    text to post
      * @return CommentDto : already transformed CommentEntity for front-end
      */
-    public CommentDto commentArticle(int article_id, String content) {
+    public CommentDto commentArticle(int article_id, CommentRequestDto comment) {
         CommentDto commentToReturn = new CommentDto();
         int userId = userService.getMe().getId();
         CommentEntity commentToSave = new CommentEntity();
         commentToSave.setArticleId(article_id);
-        commentToSave.setContent(content);
+        commentToSave.setContent(comment.getComment());
         commentToSave.setUserId(userId);
 
-        commentToReturn.setContent(content);
+        commentToReturn.setContent(comment.getComment());
         commentToReturn.setUser(userService.getMe().getName());
 
         commentRepository.save(commentToSave);

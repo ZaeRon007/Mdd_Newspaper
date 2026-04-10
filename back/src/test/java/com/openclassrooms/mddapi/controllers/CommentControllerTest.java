@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.openclassrooms.mddapi.model.CommentEntity;
 import com.openclassrooms.mddapi.model.dto.CommentDto;
+import com.openclassrooms.mddapi.model.dto.CommentRequestDto;
 import com.openclassrooms.mddapi.services.CommentService;
 
 @Tag("CommentController")
@@ -37,15 +38,16 @@ public class CommentControllerTest {
     public void shouldCommentArticleById() throws NumberFormatException, ParseException{
         String id = "1";
         CommentDto commentDto = new CommentDto(0, "2", "content");
+        CommentRequestDto comment = new CommentRequestDto("comment");
         
-        when(commentService.commentArticle(1, "content")).thenReturn(commentDto);
+        when(commentService.commentArticle(1, comment)).thenReturn(commentDto);
 
-        ResponseEntity<?> response = commentController.commentArticle(id, "content");
+        ResponseEntity<?> response = commentController.commentArticle(id, comment);
         
         assertEquals(response.getBody(), commentDto);
         assertEquals(response.getStatusCode(), HttpStatus.OK);
 
-        Mockito.verify(commentService).commentArticle(1, "content");
+        Mockito.verify(commentService).commentArticle(1, comment);
     }
 
     @Test

@@ -15,6 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.openclassrooms.mddapi.model.CommentEntity;
 import com.openclassrooms.mddapi.model.dto.CommentDto;
+import com.openclassrooms.mddapi.model.dto.CommentRequestDto;
 import com.openclassrooms.mddapi.model.dto.UserDto;
 import com.openclassrooms.mddapi.repository.CommentRepository;
 
@@ -36,7 +37,8 @@ public class CommentServiceTest {
     @Test
     @DisplayName("should comment article")
     public void shouldCommentArticle() {
-        String content = "content", username = "name";
+        String username = "name";
+        CommentRequestDto content = new CommentRequestDto("content");
 
         UserDto user = new UserDto();
         user.setId(0);

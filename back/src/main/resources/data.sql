@@ -7,4 +7,16 @@ VALUES
 
 INSERT INTO `users` (`id`,`name`,`email`,`password`,`created_at`,`updated_at`)
 VALUES
-(0,'pedro','pedro@gmail.com','$2a$10$9Ln4wYxk1zC3oXk4RUR/VO7aaDyMdw1CC2Z1fRkJRv5SfBxVDxSjK','2026-02-02 17:25:19','2026-02-02 17:25:19');
+(1,'pedro','pedro@gmail.com','$2a$10$9Ln4wYxk1zC3oXk4RUR/VO7aaDyMdw1CC2Z1fRkJRv5SfBxVDxSjK','2026-02-02 17:25:19','2026-02-02 17:25:19');
+
+INSERT INTO `article` (`id`,`title`,`date`,`content`,`theme_id`,`user_id`)
+VALUES
+(1,'title','2026-02-02 17:25:19','content',1,1),
+(2,'title','2026-02-02 17:25:19','content',2,1);
+
+INSERT INTO `comment` (`content`,`user_id`,`article_id`)
+VALUES 
+('content1',1,1),
+('content2',1,1),
+('content3',1,1),
+('content4',1,1);

@@ -84,6 +84,17 @@ Then we need to install Angular Client and configure it as global with : `npm in
 
 Finally, go to project directory and run `npm install`.
 
+# HOW TO LAUNCH TESTS : 
+
+## Back-end : 
+
+In order to launch back-end tests, you need yo run followings commands :  
+
+`cd ~/Mdd_Newspaper/back`  
+`mvn clean test`  
+
+If you want to see JaCoCo report, navigate to `back/target/site/jacoco` and open index.html in a browser.
+
 # HOW TO LAUNCH PROJECT : 
 
 You should now be abble to run :

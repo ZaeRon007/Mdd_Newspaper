@@ -7,7 +7,8 @@ VALUES
 
 INSERT INTO `users` (`id`,`name`,`email`,`password`,`created_at`,`updated_at`)
 VALUES
-(3,'pedro','pedro@gmail.com','$2a$10$9Ln4wYxk1zC3oXk4RUR/VO7aaDyMdw1CC2Z1fRkJRv5SfBxVDxSjK','2026-02-02 17:25:19','2026-02-02 17:25:19');
+(3,'pedro','pedro@gmail.com','$2a$10$9Ln4wYxk1zC3oXk4RUR/VO7aaDyMdw1CC2Z1fRkJRv5SfBxVDxSjK','2026-02-02 17:25:19','2026-02-02 17:25:19'),
+(4,'albeto','albeto@gmail.com','$2a$10$9Ln4wYxk1zC3oXk4RUR/VO7aaDyMdw1CC2Z1fRkJRv5SfBxVDxSjK','2026-02-02 17:25:19','2026-02-02 17:25:19');
 
 INSERT INTO `article` (`id`,`title`,`date`,`content`,`theme_id`,`user_id`)
 VALUES

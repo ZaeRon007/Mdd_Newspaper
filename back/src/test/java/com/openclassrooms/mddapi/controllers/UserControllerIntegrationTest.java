@@ -76,13 +76,13 @@ public class UserControllerIntegrationTest {
                                 .andExpect(jsonPath("$.email").value("pedro@gmail.com"));
         }
 
-        @AfterAll
+        @Test
         @DisplayName("should return put user")
         public void shouldReturnPutUser() throws Exception {
                 String body = "{" +
-                                "\"id\": 3," +
-                                "\"name\": \"anotherName\"," +
-                                "\"email\": \"email@yahoo.com\"" +
+                                "\"id\": 4," +
+                                "\"name\": \"alberto\"," +
+                                "\"email\": \"alberto@gmail.com\"" +
                                 "}";
 
                 mockMvc.perform(put("/api/profile/me")
@@ -90,9 +90,9 @@ public class UserControllerIntegrationTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(body))
                                 .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.id").value(3))
-                                .andExpect(jsonPath("$.name").value("anotherName"))
-                                .andExpect(jsonPath("$.email").value("email@yahoo.com"));
+                                .andExpect(jsonPath("$.id").value(4))
+                                .andExpect(jsonPath("$.name").value("alberto"))
+                                .andExpect(jsonPath("$.email").value("alberto@gmail.com"));
         }
 
         @Test

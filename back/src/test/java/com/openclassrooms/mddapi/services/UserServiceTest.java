@@ -15,14 +15,14 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.ActiveProfiles;
 
 import com.openclassrooms.mddapi.model.UserEntity;
 import com.openclassrooms.mddapi.model.dto.UserDto;
@@ -31,8 +31,7 @@ import com.openclassrooms.mddapi.repository.UserRepository;
 
 @Tag("UserService")
 @DisplayName("unit test for userService")
-@SpringBootTest
-@ActiveProfiles("test")
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
     @InjectMocks
     public UserService userService;

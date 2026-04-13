@@ -12,13 +12,13 @@ import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.openclassrooms.mddapi.model.ArticleEntity;
 import com.openclassrooms.mddapi.model.UserSubscribesEntity;
@@ -27,7 +27,8 @@ import com.openclassrooms.mddapi.services.ArticleService;
 
 @Tag("ArticleController")
 @DisplayName("unit test for Article Controller")
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+@ActiveProfiles("test")
 public class ArticleControllerTest {
 
     @InjectMocks

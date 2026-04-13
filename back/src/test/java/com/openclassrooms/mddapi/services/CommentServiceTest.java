@@ -8,10 +8,10 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.openclassrooms.mddapi.model.CommentEntity;
 import com.openclassrooms.mddapi.model.dto.CommentDto;
@@ -21,8 +21,7 @@ import com.openclassrooms.mddapi.repository.CommentRepository;
 
 @Tag("CommentService")
 @DisplayName("unit test for CommentService")
-@SpringBootTest
-@ActiveProfiles("test")
+@ExtendWith(MockitoExtension.class)
 public class CommentServiceTest {
     
     @InjectMocks

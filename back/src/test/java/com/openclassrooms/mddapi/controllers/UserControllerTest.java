@@ -8,22 +8,23 @@ import java.text.ParseException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.openclassrooms.mddapi.model.dto.UserDto;
 import com.openclassrooms.mddapi.model.dto.UserRegisterAndLoginDto;
 import com.openclassrooms.mddapi.model.responses.simpleToken;
 import com.openclassrooms.mddapi.services.UserService;
 
+@SpringBootTest
 @Tag("UserController")
 @DisplayName("unit test for user controller")
-@ExtendWith(MockitoExtension.class)
+@ActiveProfiles("test")
 public class UserControllerTest {
     @InjectMocks
     private UserController userController;

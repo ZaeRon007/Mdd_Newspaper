@@ -88,12 +88,22 @@ Finally, go to project directory and run `npm install`.
 
 ## Back-end : 
 
-In order to launch back-end tests, you need yo run followings commands :  
+In order to launch back-end tests, you need to run followings commands :  
 
 `cd ~/Mdd_Newspaper/back`  
 `mvn clean test`  
 
 If you want to see JaCoCo report, navigate to `back/target/site/jacoco` and open index.html in a browser.
+
+## Front-end : 
+
+In order to launch front-end tests, you need to run followings commands : 
+
+`cd ~/Mdd_Newspaper/front-end/`  
+`jest`
+
+I you want to see Jest coverage run this command :   
+`jest --coverage`
 
 # HOW TO LAUNCH PROJECT : 
 

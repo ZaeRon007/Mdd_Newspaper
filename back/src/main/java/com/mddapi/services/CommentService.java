@@ -1,0 +1,55 @@
+package com.mddapi.services;
+
+import org.springframework.stereotype.Service;
+
+import com.mddapi.model.CommentEntity;
+import com.mddapi.model.dto.CommentDto;
+import com.mddapi.model.dto.CommentRequestDto;
+import com.mddapi.repository.CommentRepository;
+
+@Service
+public class CommentService {
+
+    private final UserService userService;
+    private final CommentRepository commentRepository;
+
+    CommentService(CommentRepository commentRepositoryInput,
+            UserService userServiceInput) {
+        userService = userServiceInput;
+        commentRepository = commentRepositoryInput;
+    }
+
+    /**
+     * Allow user to comment an Article
+     * 
+     * @param article_id article id to comment
+     * @param content    text to post
+     * @return CommentDto : already transformed CommentEntity for front-end
+     */
+    public CommentDto commentArticle(int article_id, CommentRequestDto comment) {
+        CommentDto commentToReturn = new CommentDto();
+        int userId = userService.getMe().getId();
+        CommentEntity commentToSave = new CommentEntity();
+        commentToSave.setArticleId(article_id);
+        commentToSave.setContent(comment.getComment());
+        commentToSave.setUserId(userId);
+
+        commentToReturn.setContent(comment.getComment());
+        commentToReturn.setUser(userService.getMe().getName());
+
+        commentRepository.save(commentToSave);
+
+        return commentToReturn;
+    }
+
+    /**
+     * Get all comments from an article id
+     * 
+     * @param id article id
+     * @return Iterable<CommentEntity>: a list of CommentEntity
+     */
+    public Iterable<CommentEntity> getCommentsByArticleId(int id) {
+        return commentRepository.findAllByArticleId(id);
+    }
+
+}

@@ -1,6 +1,6 @@
 describe('user Informations Tests', () => {
 
-    it('should display user informations and unsubscribe from theme 4', () => {
+    it('should display user informations and unsubscribe from theme 1', () => {
         cy.intercept('GET', 'http://localhost:8080/api/auth/me', {
             statusCode: 200,
             body: {
@@ -57,7 +57,6 @@ describe('user Informations Tests', () => {
 
     it('should display then update profile informations', () => {
 
-        cy.loginUser('test', 'test1234!A');
 
         cy.intercept('GET', 'http://localhost:8080/api/auth/me', {
             statusCode: 200,
@@ -73,6 +72,7 @@ describe('user Informations Tests', () => {
             body: null,
         }).as('getSubscribesRequest');
 
+        cy.loginUser('test', 'test1234!A');
 
         cy.visit('http://localhost:4200/profile/me');
 
@@ -88,5 +88,34 @@ describe('user Informations Tests', () => {
 
         cy.get('input[ng-reflect-model="pedropedra"]');
         cy.get('input[ng-reflect-model="pedro@gmail.com"]');
+    })
+
+    it('should display user informations and logOut', () => {
+        cy.intercept('GET', 'http://localhost:8080/api/auth/me', {
+            statusCode: 200,
+            body: {
+                id: 1,
+                name: 'pedro',
+                email: 'pedro@gmail.com',
+            }
+        }).as('getMeRequest');
+
+        cy.intercept('GET', 'http://localhost:8080/api/subscribes', {
+            statusCode: 200,
+            body: null,
+        }).as('getSubscribesRequest');
+
+        cy.loginUser('test', 'test1234!A');
+
+        cy.visit('http://localhost:4200/profile/me');
+
+        cy.wait('@getMeRequest');
+        cy.wait('@getSubscribesRequest');
+
+        cy.get('input[ng-reflect-model="pedro"]');
+        cy.get('input[ng-reflect-model="pedro@gmail.com"]');
+
+        cy.get('span').contains('Se déconnecter').click();
+        cy.get('h1').contains('Welcome to MDD');
     })
 })

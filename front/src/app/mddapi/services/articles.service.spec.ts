@@ -6,7 +6,7 @@ import { ThemeService } from "./theme.service";
 import { UserService } from "./user.service";
 import { of } from "rxjs";
 
-describe('ComponentService', () => {
+describe('ArticleService', () => {
     let articlesService: ArticleService;
     let httpMock: HttpTestingController;
 

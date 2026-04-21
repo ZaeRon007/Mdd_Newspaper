@@ -62,7 +62,7 @@ describe('UserLoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('sould login user and navigate to ../articles/home', () => {
+  it('should login user and navigate to ../articles/home', () => {
     component.user = {
       email: '',
       name: 'roberto',

@@ -1,37 +1,25 @@
 /// <reference types="cypress" />
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+
+declare namespace Cypress {
+    interface Chainable<Subject = any> {
+        loginUser(email: string, password: string): Chainable<any>;
+    }
+}
+
+Cypress.Commands.add('loginUser', (email: string, password: string) => {
+    cy.intercept('POST', 'http://localhost:8080/api/auth/login', {
+        statusCode: 200,
+        body: {
+            token: 'supertoken',
+        },
+    }).as('loginRequest');
+
+    cy.visit('http://localhost:4200/auth/login');
+    cy.get('mat-label').contains("E-mail ou nom d\'utilisateur").click();
+    cy.get('input[name="username"]').type(email);
+    cy.get('mat-label').contains("Mot de passe").click();
+    cy.get('input[type="password"]').type(password);
+    cy.get('button').contains("Se connecter").click();
+
+    cy.wait('@loginRequest');
+})

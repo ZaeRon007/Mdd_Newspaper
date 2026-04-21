@@ -1,8 +1,6 @@
 describe('theme tests', () => {
 
     it('should display themes', () => {
-        cy.loginUser('test', 'test1234!A');
-
         cy.intercept('GET', 'http://localhost:8080/api/themes', {
             statusCode: 200,
             body: [
@@ -62,6 +60,8 @@ describe('theme tests', () => {
         cy.intercept('POST', 'http://localhost:8080/api/subscribe/3', {
             statusCode: 200,
         }).as('subscribeRequest');
+
+        cy.loginUser('test', 'test1234!A');
 
         cy.visit('http://localhost:4200/articles/themes');
 

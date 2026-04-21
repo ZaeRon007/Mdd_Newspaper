@@ -1,8 +1,6 @@
 describe('user Informations Tests', () => {
 
     it('should display user informations and unsubscribe from theme 4', () => {
-        cy.loginUser("test", "test1234!A");
-
         cy.intercept('GET', 'http://localhost:8080/api/auth/me', {
             statusCode: 200,
             body: {
@@ -36,6 +34,7 @@ describe('user Informations Tests', () => {
             statusCode: 200,
         }).as('unsubscribeRequest');
 
+        cy.loginUser("test", "test1234!A");
 
         cy.visit('http://localhost:4200/profile/me');
 

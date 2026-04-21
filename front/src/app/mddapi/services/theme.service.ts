@@ -1,11 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnInit } from "@angular/core";
 import { BehaviorSubject, forkJoin, map, Observable, switchMap, tap } from "rxjs";
-import { DisplayThemes } from "src/app/core/models/dto/displayTheme";
-import { SubscribeEntity } from "src/app/core/models/subscribeEntity";
 import { themeEntity } from "src/app/core/models/themeEntity";
 import { environment } from "src/environments/environment.prod";
-import { ArticleService } from "./articles.service";
 
 @Injectable({
     providedIn: 'root'

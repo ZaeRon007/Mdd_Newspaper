@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, forkJoin, map, Observable, switchMap, tap } from "rxjs";
+import { forkJoin, map, Observable, switchMap } from "rxjs";
 import { CommentEntity } from "src/app/core/models/CommentEntity";
 import { environment } from "src/environments/environment.prod";
 import { UserService } from "./user.service";
